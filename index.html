@@ -3,239 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Jai Mata Di Calculator</title>
 
+<meta name="theme-color" content="#8b0000">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+
 <style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 15px;
-}
-
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-h1, h2 {
-    color: #8b0000;
-    text-align: center;
-}
-
-.section {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 10px;
-}
-
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-.amount {
-    margin-top: 15px;
-    padding: 12px;
-    background: #fff0f0;
-    color: #8b0000;
-    font-weight: bold;
-}
-
-.total-box {
-    background: #8b0000;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.total-box h2 {
-    color: white;
-}
-
-#grandTotal {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 7px;
-    background: #8b0000;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #777;
-}
+*{box-sizing:border-box}
+body{font-family:Arial;background:#f4f4f4;margin:0;padding:15px;color:#222}
+.container{max-width:600px;margin:auto;background:white;padding:20px;border-radius:14px}
+header{text-align:center;margin-bottom:20px}
+h1,h2{color:#8b0000}
+.section{border:1px solid #ddd;border-radius:10px;padding:16px;margin:15px 0}
+label{display:block;font-weight:bold;margin-top:12px}
+input{width:100%;padding:12px;margin-top:6px;border:1px solid #bbb;border-radius:7px;font-size:17px}
+.amount{margin-top:14px;background:#fff0f0;padding:12px;font-weight:bold;color:#8b0000}
+.totalbox{background:#8b0000;color:white;text-align:center;padding:20px;border-radius:10px}
+.totalbox h2{color:white}
+#grandTotal{font-size:30px;font-weight:bold}
+button{width:100%;padding:14px;margin-top:12px;border:0;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer}
+.install{background:#198754;color:white}
+.reset{background:#ddd;color:#222}
+.print{background:#8b0000;color:white}
+footer{text-align:center;margin-top:20px;color:#777;font-size:13px}
+@media(max-width:480px){.container{padding:14px}}
+@media print{button{display:none}body{background:white}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
+<header>
 <h1>Jai Mata Di</h1>
 <h2>Tent Caterer and Event</h2>
-<p style="text-align:center;">Square Feet Rate Calculator</p>
+<p>Square Feet Rate Calculator</p>
+</header>
 
-<!-- WALLING -->
+<button id="installBtn" class="install">⬇ Download / Install App</button>
+
 <div class="section">
 <h2>Walling</h2>
-
 <label>Walling Area (Sq Ft)</label>
-<input type="number" id="wallArea" min="0" step="any">
+<input id="wallArea" type="number" min="0" step="any" placeholder="Enter area">
 
 <label>Walling Rate (₹ per Sq Ft)</label>
-<input type="number" id="wallRate" min="0" step="any">
+<input id="wallRate" type="number" min="0" step="any" placeholder="Enter rate">
 
-<div class="amount">
-Walling Amount: ₹<span id="wallTotal">0.00</span>
-</div>
+<div class="amount">Walling Amount: ₹<span id="wallTotal">0.00</span></div>
 </div>
 
-<!-- CEILING -->
 <div class="section">
 <h2>Ceiling</h2>
-
 <label>Ceiling Area (Sq Ft)</label>
-<input type="number" id="ceilingArea" min="0" step="any">
+<input id="ceilingArea" type="number" min="0" step="any" placeholder="Enter area">
 
 <label>Ceiling Rate (₹ per Sq Ft)</label>
-<input type="number" id="ceilingRate" min="0" step="any">
+<input id="ceilingRate" type="number" min="0" step="any" placeholder="Enter rate">
 
-<div class="amount">
-Ceiling Amount: ₹<span id="ceilingTotal">0.00</span>
-</div>
+<div class="amount">Ceiling Amount: ₹<span id="ceilingTotal">0.00</span></div>
 </div>
 
-<!-- CARPETING -->
 <div class="section">
 <h2>Carpeting</h2>
-
 <label>Carpeting Area (Sq Ft)</label>
-<input type="number" id="carpetArea" min="0" step="any">
+<input id="carpetArea" type="number" min="0" step="any" placeholder="Enter area">
 
 <label>Carpeting Rate (₹ per Sq Ft)</label>
-<input type="number" id="carpetRate" min="0" step="any">
+<input id="carpetRate" type="number" min="0" step="any" placeholder="Enter rate">
 
-<div class="amount">
-Carpeting Amount: ₹<span id="carpetTotal">0.00</span>
-</div>
+<div class="amount">Carpeting Amount: ₹<span id="carpetTotal">0.00</span></div>
 </div>
 
-<!-- GRAND TOTAL -->
-<div class="total-box">
+<div class="totalbox">
 <h2>Grand Total</h2>
 ₹<span id="grandTotal">0.00</span>
 </div>
 
-<button type="button" id="resetBtn">Reset Calculator</button>
-<button type="button" onclick="window.print()">Print</button>
+<button class="reset" id="resetBtn">Reset Calculator</button>
+<button class="print" onclick="window.print()">Print / Save PDF</button>
 
-<footer>
-Jai Mata Di Tent Caterer and Event
-</footer>
-
+<footer>Jai Mata Di Tent Caterer and Event</footer>
 </div>
 
 <script>
-(function () {
+"use strict";
 
-    function numberValue(id) {
-        const element = document.getElementById(id);
-        const value = parseFloat(element.value);
+// Calculator
+const ids = [
+ "wallArea","wallRate",
+ "ceilingArea","ceilingRate",
+ "carpetArea","carpetRate"
+];
 
-        return Number.isFinite(value) && value >= 0 ? value : 0;
-    }
+function value(id){
+ const n = Number(document.getElementById(id).value);
+ return Number.isFinite(n) && n > 0 ? n : 0;
+}
 
-    function money(amount) {
-        return amount.toLocaleString("en-IN", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-    }
+function money(n){
+ return n.toLocaleString("en-IN",{
+  minimumFractionDigits:2,
+  maximumFractionDigits:2
+ });
+}
 
-    function calculate() {
+function calculate(){
+ const wall = value("wallArea") * value("wallRate");
+ const ceiling = value("ceilingArea") * value("ceilingRate");
+ const carpet = value("carpetArea") * value("carpetRate");
+ const total = wall + ceiling + carpet;
 
-        const wallAmount =
-            numberValue("wallArea") * numberValue("wallRate");
+ document.getElementById("wallTotal").textContent = money(wall);
+ document.getElementById("ceilingTotal").textContent = money(ceiling);
+ document.getElementById("carpetTotal").textContent = money(carpet);
+ document.getElementById("grandTotal").textContent = money(total);
+}
 
-        const ceilingAmount =
-            numberValue("ceilingArea") * numberValue("ceilingRate");
+ids.forEach(id=>{
+ document.getElementById(id).addEventListener("input",calculate);
+});
 
-        const carpetAmount =
-            numberValue("carpetArea") * numberValue("carpetRate");
+document.getElementById("resetBtn").addEventListener("click",()=>{
+ ids.forEach(id=>document.getElementById(id).value="");
+ calculate();
+});
 
-        const grandTotal =
-            wallAmount + ceilingAmount + carpetAmount;
+calculate();
 
-        document.getElementById("wallTotal").textContent =
-            money(wallAmount);
+// App installation button
+let installPrompt = null;
+const installBtn = document.getElementById("installBtn");
 
-        document.getElementById("ceilingTotal").textContent =
-            money(ceilingAmount);
+window.addEventListener("beforeinstallprompt", event=>{
+ event.preventDefault();
+ installPrompt = event;
+ installBtn.style.display = "block";
+});
 
-        document.getElementById("carpetTotal").textContent =
-            money(carpetAmount);
+installBtn.addEventListener("click",async()=>{
+ if(installPrompt){
+  installPrompt.prompt();
+  await installPrompt.userChoice;
+  installPrompt = null;
+ }else{
+  alert("Chrome menu (⋮) kholo aur Install app ya Add to Home screen select karo.");
+ }
+});
 
-        document.getElementById("grandTotal").textContent =
-            money(grandTotal);
-    }
-
-    const inputIds = [
-        "wallArea",
-        "wallRate",
-        "ceilingArea",
-        "ceilingRate",
-        "carpetArea",
-        "carpetRate"
-    ];
-
-    inputIds.forEach(function (id) {
-        document.getElementById(id).addEventListener("input", calculate);
-    });
-
-    document.getElementById("resetBtn").addEventListener("click", function () {
-
-        inputIds.forEach(function (id) {
-            document.getElementById(id).value = "";
-        });
-
-        calculate();
-    });
-
-    calculate();
-
-})();
+// Service Worker
+if("serviceWorker" in navigator){
+ window.addEventListener("load",()=>{
+  navigator.serviceWorker.register("./service-worker.js")
+   .catch(error=>console.log("Service Worker error:",error));
+ });
+}
 </script>
 
 </body>
 </html>
-
