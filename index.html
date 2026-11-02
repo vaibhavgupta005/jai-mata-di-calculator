@@ -1,335 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta name="theme-color" content="#8b0000">
-    <link rel="manifest" href="./manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jai Mata Di Calculator</title>
 
-<link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    <title>Jai Mata Di Calculator</title>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 15px;
+}
 
-    <meta name="theme-color" content="#8b0000">
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+h1, h2 {
+    color: #8b0000;
+    text-align: center;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #222;
-            padding: 20px;
-        }
+.section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
 
-        .container {
-            max-width: 650px;
-            margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-        }
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
 
-        header h1 {
-            color: #8b0000;
-            font-size: 26px;
-        }
+.amount {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff0f0;
+    color: #8b0000;
+    font-weight: bold;
+}
 
-        header p {
-            color: #666;
-            margin-top: 6px;
-        }
+.total-box {
+    background: #8b0000;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
 
-        .section {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 18px;
-        }
+.total-box h2 {
+    color: white;
+}
 
-        .section h2 {
-            color: #8b0000;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
+#grandTotal {
+    font-size: 30px;
+    font-weight: bold;
+}
 
-        label {
-            display: block;
-            margin-top: 12px;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #8b0000;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #bbb;
-            border-radius: 7px;
-            font-size: 16px;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #8b0000;
-        }
-
-        .amount {
-            background: #fff3f3;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 7px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #8b0000;
-        }
-
-        .total-box {
-            background: #8b0000;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .total-box h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .total {
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        button {
-            flex: 1;
-            padding: 13px;
-            border: none;
-            border-radius: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .reset {
-            background: #ddd;
-            color: #222;
-        }
-
-        .print {
-            background: #8b0000;
-            color: white;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-            color: #777;
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                padding: 16px;
-            }
-
-            header h1 {
-                font-size: 22px;
-            }
-
-            .buttons {
-                flex-direction: column;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-
-            .container {
-                box-shadow: none;
-            }
-
-            .buttons {
-                display: none;
-            }
-        }
-    </style>
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-    <header>
-        <h1>Jai Mata Di</h1>
-        <h2>Tent Caterer and Event</h2>
-        <p>Square Feet Rate Calculator</p>
-    </header>
+<h1>Jai Mata Di</h1>
+<h2>Tent Caterer and Event</h2>
+<p style="text-align:center;">Square Feet Rate Calculator</p>
 
-    <!-- WALLING -->
-    <div class="section">
-        <h2>Walling</h2>
+<!-- WALLING -->
+<div class="section">
+<h2>Walling</h2>
 
-        <label for="wallArea">Walling Area (Square Feet)</label>
-        <input type="number" id="wallArea" placeholder="Enter walling sq ft"
-               min="0" step="any" oninput="calculate()">
+<label>Walling Area (Sq Ft)</label>
+<input type="number" id="wallArea" min="0" step="any">
 
-        <label for="wallRate">Walling Rate (₹ per sq ft)</label>
-        <input type="number" id="wallRate" placeholder="Enter walling rate"
-               min="0" step="any" oninput="calculate()">
+<label>Walling Rate (₹ per Sq Ft)</label>
+<input type="number" id="wallRate" min="0" step="any">
 
-        <div class="amount">
-            Walling Amount: ₹<span id="wallTotal">0.00</span>
-        </div>
-    </div>
+<div class="amount">
+Walling Amount: ₹<span id="wallTotal">0.00</span>
+</div>
+</div>
 
-    <!-- CEILING -->
-    <div class="section">
-        <h2>Ceiling</h2>
+<!-- CEILING -->
+<div class="section">
+<h2>Ceiling</h2>
 
-        <label for="ceilingArea">Ceiling Area (Square Feet)</label>
-        <input type="number" id="ceilingArea" placeholder="Enter ceiling sq ft"
-               min="0" step="any" oninput="calculate()">
+<label>Ceiling Area (Sq Ft)</label>
+<input type="number" id="ceilingArea" min="0" step="any">
 
-        <label for="ceilingRate">Ceiling Rate (₹ per sq ft)</label>
-        <input type="number" id="ceilingRate" placeholder="Enter ceiling rate"
-               min="0" step="any" oninput="calculate()">
+<label>Ceiling Rate (₹ per Sq Ft)</label>
+<input type="number" id="ceilingRate" min="0" step="any">
 
-        <div class="amount">
-            Ceiling Amount: ₹<span id="ceilingTotal">0.00</span>
-        </div>
-    </div>
+<div class="amount">
+Ceiling Amount: ₹<span id="ceilingTotal">0.00</span>
+</div>
+</div>
 
-    <!-- CARPETING -->
-    <div class="section">
-        <h2>Carpeting</h2>
+<!-- CARPETING -->
+<div class="section">
+<h2>Carpeting</h2>
 
-        <label for="carpetArea">Carpeting Area (Square Feet)</label>
-        <input type="number" id="carpetArea" placeholder="Enter carpeting sq ft"
-               min="0" step="any" oninput="calculate()">
+<label>Carpeting Area (Sq Ft)</label>
+<input type="number" id="carpetArea" min="0" step="any">
 
-        <label for="carpetRate">Carpeting Rate (₹ per sq ft)</label>
-        <input type="number" id="carpetRate" placeholder="Enter carpeting rate"
-               min="0" step="any" oninput="calculate()">
+<label>Carpeting Rate (₹ per Sq Ft)</label>
+<input type="number" id="carpetRate" min="0" step="any">
 
-        <div class="amount">
-            Carpeting Amount: ₹<span id="carpetTotal">0.00</span>
-        </div>
-    </div>
+<div class="amount">
+Carpeting Amount: ₹<span id="carpetTotal">0.00</span>
+</div>
+</div>
 
-    <!-- GRAND TOTAL -->
-    <div class="total-box">
-        <h2>Grand Total</h2>
-        <div class="total">₹<span id="grandTotal">0.00</span></div>
-    </div>
+<!-- GRAND TOTAL -->
+<div class="total-box">
+<h2>Grand Total</h2>
+₹<span id="grandTotal">0.00</span>
+</div>
 
-    <div class="buttons">
-        <button class="reset" onclick="resetCalculator()">Reset</button>
-        <button class="print" onclick="window.print()">Print Bill</button>
-    </div>
+<button type="button" id="resetBtn">Reset Calculator</button>
+<button type="button" onclick="window.print()">Print</button>
 
-    <footer>
-        Jai Mata Di Tent Caterer and Event
-    </footer>
+<footer>
+Jai Mata Di Tent Caterer and Event
+</footer>
 
 </div>
 
 <script>
-    function getValue(id) {
-        const value = parseFloat(document.getElementById(id).value);
-        return isNaN(value) || value < 0 ? 0 : value;
+(function () {
+
+    function numberValue(id) {
+        const element = document.getElementById(id);
+        const value = parseFloat(element.value);
+
+        return Number.isFinite(value) && value >= 0 ? value : 0;
+    }
+
+    function money(amount) {
+        return amount.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
     }
 
     function calculate() {
 
-        // Walling calculation
-        const wallArea = getValue("wallArea");
-        const wallRate = getValue("wallRate");
-        const wallAmount = wallArea * wallRate;
+        const wallAmount =
+            numberValue("wallArea") * numberValue("wallRate");
 
-        // Ceiling calculation
-        const ceilingArea = getValue("ceilingArea");
-        const ceilingRate = getValue("ceilingRate");
-        const ceilingAmount = ceilingArea * ceilingRate;
+        const ceilingAmount =
+            numberValue("ceilingArea") * numberValue("ceilingRate");
 
-        // Carpeting calculation
-        const carpetArea = getValue("carpetArea");
-        const carpetRate = getValue("carpetRate");
-        const carpetAmount = carpetArea * carpetRate;
+        const carpetAmount =
+            numberValue("carpetArea") * numberValue("carpetRate");
 
-        // Grand total
-        const grandTotal = wallAmount + ceilingAmount + carpetAmount;
+        const grandTotal =
+            wallAmount + ceilingAmount + carpetAmount;
 
-        // Display amounts
         document.getElementById("wallTotal").textContent =
-            wallAmount.toFixed(2);
+            money(wallAmount);
 
         document.getElementById("ceilingTotal").textContent =
-            ceilingAmount.toFixed(2);
+            money(ceilingAmount);
 
         document.getElementById("carpetTotal").textContent =
-            carpetAmount.toFixed(2);
+            money(carpetAmount);
 
         document.getElementById("grandTotal").textContent =
-            grandTotal.toLocaleString("en-IN", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
+            money(grandTotal);
     }
 
-    function resetCalculator() {
+    const inputIds = [
+        "wallArea",
+        "wallRate",
+        "ceilingArea",
+        "ceilingRate",
+        "carpetArea",
+        "carpetRate"
+    ];
 
-        document.getElementById("wallArea").value = "";
-        document.getElementById("wallRate").value = "";
+    inputIds.forEach(function (id) {
+        document.getElementById(id).addEventListener("input", calculate);
+    });
 
-        document.getElementById("ceilingArea").value = "";
-        document.getElementById("ceilingRate").value = "";
+    document.getElementById("resetBtn").addEventListener("click", function () {
 
-        document.getElementById("carpetArea").value = "";
-        document.getElementById("carpetRate").value = "";
+        inputIds.forEach(function (id) {
+            document.getElementById(id).value = "";
+        });
 
         calculate();
-    }
+    });
 
     calculate();
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-        navigator.serviceWorker.register("./service-worker.js")
-            .then(function () {
-                console.log("Service Worker registered");
-            })
-            .catch(function (error) {
-                console.log("Service Worker error:", error);
-            });
-    });
-}
+
+})();
 </script>
-}
-</script>
+
 </body>
 </html>
+
