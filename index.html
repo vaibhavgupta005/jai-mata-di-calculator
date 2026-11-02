@@ -1,133 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#8e2432">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<title>Jai Mata Di | Sq. Ft. Rate Calculator</title>
-<style>
-  :root{--red:#8e2432;--red2:#b73545;--gold:#d8b56d;--ink:#25232a;--muted:#6b6870;--bg:#f5f3f1;--line:#e8e2df}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#f7f4f1,#eee8e4);color:var(--ink);padding:24px}
-  .wrap{max-width:1000px;margin:auto}
-  header{background:linear-gradient(120deg,#641724,#9e2939);color:#fff;padding:28px;border-radius:18px 18px 0 0;position:relative;overflow:hidden}
-  header:after{content:"";position:absolute;right:-45px;top:-75px;width:230px;height:230px;border:24px solid rgba(255,255,255,.07);border-radius:50%}
-  .brand{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#f2d9a4;margin-bottom:8px}
-  h1{margin:0;font-size:clamp(24px,4vw,34px)}
-  header p{margin:8px 0 0;color:#f4e7e7}
-  .panel{background:#fff;padding:24px;border:1px solid var(--line);box-shadow:0 12px 35px rgba(42,20,20,.08)}
-  .ratebox{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#fff8e9;border:1px solid #ead6a9;padding:16px;border-radius:12px;margin-bottom:22px}
-  .ratebox label{font-weight:700}
-  .ratebox input{max-width:220px}
-  .hint{font-size:13px;color:var(--muted)}
-  .sections{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .section{border:1px solid var(--line);border-radius:13px;padding:18px;background:#fff}
-  .section h2{font-size:18px;margin:0 0 14px;color:var(--red)}
-  label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
-  input,select{width:100%;padding:12px;border:1px solid #d9d2cf;border-radius:8px;font-size:16px;background:#fff}
-  input:focus{outline:2px solid #e7bdc3;border-color:var(--red)}
-  .field{margin-bottom:13px}
-  .result{background:#f8f5f4;border-radius:8px;padding:12px;margin-top:8px}
-  .result small{color:var(--muted);display:block;margin-bottom:4px}
-  .result strong{font-size:20px;color:var(--red)}
-  .summary{margin-top:22px;background:#2d2528;color:#fff;border-radius:12px;padding:20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
-  .summary .total{font-size:30px;font-weight:800;color:#f3d18a}
-  .summary p{margin:5px 0 0;color:#d8cfd1;font-size:13px}
-  .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-  button{border:0;border-radius:8px;padding:12px 18px;font-weight:700;font-size:14px;cursor:pointer}
-  .primary{background:var(--red);color:#fff}.secondary{background:#eee8e5;color:#342b2d}
-  footer{text-align:center;font-size:12px;color:#777;margin-top:15px}
-  @media(max-width:750px){body{padding:12px}.sections{grid-template-columns:1fr}.panel{padding:16px}.summary{grid-template-columns:1fr}.summary .total{font-size:26px}}
-  @media print{body{background:#fff;padding:0}.wrap{max-width:none}header,.panel{box-shadow:none} .buttons,footer{display:none}header{border-radius:0}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jai Mata Di Calculator</title>
+
+    <meta name="theme-color" content="#8b0000">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            color: #8b0000;
+            font-size: 26px;
+        }
+
+        header p {
+            color: #666;
+            margin-top: 6px;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .section h2 {
+            color: #8b0000;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8b0000;
+        }
+
+        .amount {
+            background: #fff3f3;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 7px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #8b0000;
+        }
+
+        .total-box {
+            background: #8b0000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .total-box h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .total {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .reset {
+            background: #ddd;
+            color: #222;
+        }
+
+        .print {
+            background: #8b0000;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .buttons {
+                display: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="wrap">
-<header>
-  <div class="brand">Jai Mata Di Tent Caterer and Event</div>
-  <h1>Square Feet Rate Calculator</h1>
-  <p>Simple area × rate calculation for Walling, Ceiling and Carpeting</p>
-</header>
-<div class="panel">
-  <div class="ratebox">
-    <div>
-      <label for="rate">First, enter your rate per sq. ft. (₹)</label>
-      <input id="rate" type="number" min="0" step="0.01" value="15" placeholder="e.g. 15">
+
+<div class="container">
+
+    <header>
+        <h1>Jai Mata Di</h1>
+        <h2>Tent Caterer and Event</h2>
+        <p>Square Feet Rate Calculator</p>
+    </header>
+
+    <!-- WALLING -->
+    <div class="section">
+        <h2>Walling</h2>
+
+        <label for="wallArea">Walling Area (Square Feet)</label>
+        <input type="number" id="wallArea" placeholder="Enter walling sq ft"
+               min="0" step="any" oninput="calculate()">
+
+        <label for="wallRate">Walling Rate (₹ per sq ft)</label>
+        <input type="number" id="wallRate" placeholder="Enter walling rate"
+               min="0" step="any" oninput="calculate()">
+
+        <div class="amount">
+            Walling Amount: ₹<span id="wallTotal">0.00</span>
+        </div>
     </div>
-    <div class="hint">This rate will apply to all three sections. Change it anytime.</div>
-  </div>
 
-  <div class="sections">
-    <section class="section">
-      <h2>Walling</h2>
-      <div class="field">
-        <label for="wallSqft">Walling area (sq. ft.)</label>
-        <input id="wallSqft" type="number" min="0" step="0.01" value="0" placeholder="Enter total sq. ft.">
-      </div>
-      <div class="result"><small>Walling amount</small><strong id="wallTotal">₹0.00</strong></div>
-    </section>
+    <!-- CEILING -->
+    <div class="section">
+        <h2>Ceiling</h2>
 
-    <section class="section">
-      <h2>Ceiling</h2>
-      <div class="field">
-        <label for="ceilingSqft">Ceiling area (sq. ft.)</label>
-        <input id="ceilingSqft" type="number" min="0" step="0.01" value="0" placeholder="Enter total sq. ft.">
-      </div>
-      <div class="result"><small>Ceiling amount</small><strong id="ceilingTotal">₹0.00</strong></div>
-    </section>
+        <label for="ceilingArea">Ceiling Area (Square Feet)</label>
+        <input type="number" id="ceilingArea" placeholder="Enter ceiling sq ft"
+               min="0" step="any" oninput="calculate()">
 
-    <section class="section">
-      <h2>Carpeting</h2>
-      <div class="field">
-        <label for="carpetSqft">Carpeting area (sq. ft.)</label>
-        <input id="carpetSqft" type="number" min="0" step="0.01" value="0" placeholder="Enter total sq. ft.">
-      </div>
-      <div class="result"><small>Carpeting amount</small><strong id="carpetTotal">₹0.00</strong></div>
-    </section>
-  </div>
+        <label for="ceilingRate">Ceiling Rate (₹ per sq ft)</label>
+        <input type="number" id="ceilingRate" placeholder="Enter ceiling rate"
+               min="0" step="any" oninput="calculate()">
 
-  <div class="summary">
-    <div>
-      <strong>Grand Total</strong>
-      <p id="totalSqft">Total area: 0 sq. ft.</p>
-      <p id="rateSummary">Rate: ₹15.00 per sq. ft.</p>
+        <div class="amount">
+            Ceiling Amount: ₹<span id="ceilingTotal">0.00</span>
+        </div>
     </div>
-    <div class="total" id="grandTotal">₹0.00</div>
-  </div>
 
-  <div class="buttons">
-    <button class="primary" onclick="window.print()">Print / Save PDF</button>
-    <button class="secondary" onclick="resetCalculator()">Reset Calculator</button>
-  </div>
+    <!-- CARPETING -->
+    <div class="section">
+        <h2>Carpeting</h2>
+
+        <label for="carpetArea">Carpeting Area (Square Feet)</label>
+        <input type="number" id="carpetArea" placeholder="Enter carpeting sq ft"
+               min="0" step="any" oninput="calculate()">
+
+        <label for="carpetRate">Carpeting Rate (₹ per sq ft)</label>
+        <input type="number" id="carpetRate" placeholder="Enter carpeting rate"
+               min="0" step="any" oninput="calculate()">
+
+        <div class="amount">
+            Carpeting Amount: ₹<span id="carpetTotal">0.00</span>
+        </div>
+    </div>
+
+    <!-- GRAND TOTAL -->
+    <div class="total-box">
+        <h2>Grand Total</h2>
+        <div class="total">₹<span id="grandTotal">0.00</span></div>
+    </div>
+
+    <div class="buttons">
+        <button class="reset" onclick="resetCalculator()">Reset</button>
+        <button class="print" onclick="window.print()">Print Bill</button>
+    </div>
+
+    <footer>
+        Jai Mata Di Tent Caterer and Event
+    </footer>
+
 </div>
-<footer>Jai Mata Di Tent Caterer and Event • Business calculation tool</footer>
-</div>
+
 <script>
-const ids = ['rate','wallSqft','ceilingSqft','carpetSqft'];
-function value(id){const n=parseFloat(document.getElementById(id).value);return Number.isFinite(n)&&n>0?n:0;}
-function money(n){return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function calculate(){
-  const rate=value('rate');
-  const wall=value('wallSqft'), ceiling=value('ceilingSqft'), carpet=value('carpetSqft');
-  document.getElementById('wallTotal').textContent=money(wall*rate);
-  document.getElementById('ceilingTotal').textContent=money(ceiling*rate);
-  document.getElementById('carpetTotal').textContent=money(carpet*rate);
-  document.getElementById('grandTotal').textContent=money((wall+ceiling+carpet)*rate);
-  document.getElementById('totalSqft').textContent='Total area: '+(wall+ceiling+carpet).toLocaleString('en-IN')+' sq. ft.';
-  document.getElementById('rateSummary').textContent='Rate: '+money(rate)+' per sq. ft.';
-}
-ids.forEach(id=>document.getElementById(id).addEventListener('input',calculate));
-function resetCalculator(){ids.forEach(id=>document.getElementById(id).value=id==='rate'?'15':'0');calculate();}
-calculate();
+    function getValue(id) {
+        const value = parseFloat(document.getElementById(id).value);
+        return isNaN(value) || value < 0 ? 0 : value;
+    }
+
+    function calculate() {
+
+        // Walling calculation
+        const wallArea = getValue("wallArea");
+        const wallRate = getValue("wallRate");
+        const wallAmount = wallArea * wallRate;
+
+        // Ceiling calculation
+        const ceilingArea = getValue("ceilingArea");
+        const ceilingRate = getValue("ceilingRate");
+        const ceilingAmount = ceilingArea * ceilingRate;
+
+        // Carpeting calculation
+        const carpetArea = getValue("carpetArea");
+        const carpetRate = getValue("carpetRate");
+        const carpetAmount = carpetArea * carpetRate;
+
+        // Grand total
+        const grandTotal = wallAmount + ceilingAmount + carpetAmount;
+
+        // Display amounts
+        document.getElementById("wallTotal").textContent =
+            wallAmount.toFixed(2);
+
+        document.getElementById("ceilingTotal").textContent =
+            ceilingAmount.toFixed(2);
+
+        document.getElementById("carpetTotal").textContent =
+            carpetAmount.toFixed(2);
+
+        document.getElementById("grandTotal").textContent =
+            grandTotal.toLocaleString("en-IN", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+    }
+
+    function resetCalculator() {
+
+        document.getElementById("wallArea").value = "";
+        document.getElementById("wallRate").value = "";
+
+        document.getElementById("ceilingArea").value = "";
+        document.getElementById("ceilingRate").value = "";
+
+        document.getElementById("carpetArea").value = "";
+        document.getElementById("carpetRate").value = "";
+
+        calculate();
+    }
+
+    calculate();
 </script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(err => console.log('Offline setup:', err));
-  });
-}
-</script>
+
 </body>
 </html>
