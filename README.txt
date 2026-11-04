@@ -1,21 +1,23 @@
-JAI MATA DI SQ. FT. CALCULATOR — PWA APP
+JAI MATA DI BUSINESS CALCULATOR
 
-This project is a Progressive Web App (PWA) for Android phones and PC.
-It calculates:
-- Walling area × rate per sq. ft.
-- Ceiling area × rate per sq. ft.
-- Carpeting area × rate per sq. ft.
-- Grand total
+Files:
+- index.html: calculator app
+- manifest.json: installable PWA settings
+- service-worker.js: offline cache
+- icon.svg: app icon
 
-INSTALL / USE:
+Run on PC:
 1. Extract this ZIP.
-2. For quick PC testing, open index.html in Chrome/Edge (calculator works; PWA installation/offline caching requires hosting).
-3. To install as an app on Android and PC, upload these files to an HTTPS host such as GitHub Pages or Netlify.
-4. Open the hosted HTTPS address in Chrome on Android or Edge/Chrome on PC.
-5. Android: browser menu → Install app / Add to Home screen.
-   PC: install icon in the browser address bar or menu → Install app.
+2. Open index.html in Chrome or Edge to use the calculator locally.
 
-Important:
-- PWA installation requires HTTPS (or localhost). Opening the file directly does not install it as a PWA.
-- This is a web app/PWA, not a native APK. It can be installed on Android and PC after HTTPS hosting.
-- Calculator works offline after it has been opened and cached once.
+Publish as an installable app:
+1. Upload the files (not the enclosing folder) to the root of a GitHub repository.
+2. Enable GitHub Pages from Settings > Pages, branch main, folder / (root).
+3. Open the published HTTPS URL on Android Chrome or desktop Chrome/Edge.
+4. Choose Install app / Add to Home Screen.
+
+Notes:
+- Print Quotation and Save as PDF are separate buttons. Save as PDF opens the browser print dialog; select "Save as PDF" as destination.
+- Set / Non-Set is currently a selectable label; the entered rate is multiplied by quantity in either mode. Enter the applicable rate for the selected pricing type.
+- Item names can be edited. Additional table types and utensils can be added.
+- The app does not upload or store customer records; calculations happen in the browser. Refreshing the page clears unsaved entries.

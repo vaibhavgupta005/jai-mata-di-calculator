@@ -1,1 +1,10 @@
-{"name":"Jai Mata Di – Billing & Estimation","short_name":"JMD Billing","start_url":"./","scope":"./","display":"standalone","background_color":"#f4f4f4","theme_color":"#8b0000","icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name": "Jai Mata Di Business Calculator",
+  "short_name": "JMD Calculator",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f5ef",
+  "theme_color": "#173f35",
+  "description": "Tent, event and catering business quotation calculator",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
